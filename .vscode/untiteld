@@ -1,0 +1,45 @@
+@extends('layouts.app')
+
+
+@section('content')
+
+<div>
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>By Categoy</h3>
+      <ul>
+        @foreach ($categories as $category )
+        <li class="list-group-item"><a href="{{route('posts.index',['category'=>$category->slug])}}">{{$category->name}}</a></li>
+        @endforeach
+          
+              
+          
+      </ul>
+    </div> <!-- end sidebar -->
+    <p>{{$categoryname}}</p>
+@if (count($keys)>0)
+    @foreach ($keys as $p)
+   <div class="row mb-2">
+      <div class="col-md-6 col-sm-4">
+        
+       <img src="storage/cover_image/{{$p->cover_image}}" style="width:100%"/>
+      </div>
+      <div class="col-md-8 col-sm-8">
+            <a href="posts/{{$p->id}}"><h3>{{$p->title}}</h3></a>
+       <small>created by {{$p->user_id}}</small>
+
+      </div>
+    </div>    
+    @endforeach
+    
+@else
+<div class="col-md-4 col-sm-4">
+  <p>no post</p>
+ </div>
+
+@endif
+
+
+</div> 
+</div> 
+@endsection
